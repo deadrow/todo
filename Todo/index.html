@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script type="text/javascript">
+  </script>
+
+</head>
+
+<body ng-app="myApp">
+  <div class="container" ng-controller="myCtrl">
+    <div class="jumbotron">
+      <h1> This is a basic TODO app</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <input type="text" class="form-control" name="title" ng-model="todo.title"
+        ng-blur="todo.updateTitle()"
+        ng-keypress="todo.updateTitle()"
+         placeholder="title"/>
+      </div>
+    </div>
+    <div class="row" ng-repeat="task in todo.tasks">
+      <div class="col-md-8">
+        <p><input type="checkbox" value="" ng-model="task.confirmed"
+          ng-change="todo.changeCss(task)" >
+          <span ng-model='task.myVal' ng-style="{'text-decoration' : task.myVal}">&nbsp; &nbsp;{{task.text}}</span></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <input type="text" class="form-control" name="task" ng-model="todo.task"
+        ng-keypress="todo.update($event)"
+         placeholder="Enter new task"/>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-default" ng-click='todo.update($event)'>Add</button>
+      </div>
+    </div>
+
+    <div class="alert alert-success" >
+    {{todo.remainingTasks()}} of {{todo.tasks.length}} remaining
+    </div>
+
+
+  </div>
+
+
+    <!-- modules -->
+  <script src="js/app.js"></script>
+    <!-- controllers -->
+  <script src="js/controllers/maincontroller.js"></script>
+    <!-- directives -->
+  <script src="js/directives/info.js"></script>
+
+</body>
+
+</html>
