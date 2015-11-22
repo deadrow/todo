@@ -1,13 +1,14 @@
 app.controller('myCtrl',['$scope','$element',function($scope,$element){
     $scope.todo={};
-  //$scope.todo.tasks=[];  
+  //$scope.todo.tasks=[];
     $scope.todo=
   {
-    title       : "",
+    title       : (localStorage.getItem('title')!=null)? JSON.parse(localStorage.getItem('title')): "",
     updateTitle : function(){
       if(event.keyCode==13 || event.type=="blur"){
         $scope.todo.title=$scope.todo.title;
         //console.log($scope.todo.title);
+        localStorage.setItem('title',JSON.stringify($scope.todo.title.toUpperCase()));
         }
       },
     tasks   : (localStorage.getItem('todo')!=null)? JSON.parse(localStorage.getItem('todo')): [],
@@ -62,7 +63,7 @@ app.controller('myCtrl',['$scope','$element',function($scope,$element){
         localStorage.clear();
       else
       localStorage.setItem('todo',JSON.stringify($scope.todo.tasks));
-    } 
+    }
 
   }//scope end
 }]);

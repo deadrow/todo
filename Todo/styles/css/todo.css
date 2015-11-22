@@ -1,3 +1,9 @@
 .alert-success  {
    width:15%;
 }
+.top-buffer {
+	margin-top:5px;
+}
+.icon-success {
+    color: #5CB85C;
+}
